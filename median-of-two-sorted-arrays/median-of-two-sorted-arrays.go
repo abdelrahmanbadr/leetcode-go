@@ -4,36 +4,36 @@ import "fmt"
 
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	m, n := len(nums1), len(nums2)
-	if m + n == 0{
+	if m+n == 0 {
 		return 0.0
 	}
 	nums := make([]int, m+n, m+n)
 	i, j, k := 0, 0, 0
 	for i < m && j < n {
-		if nums1[i] < nums2[j]{
+		if nums1[i] < nums2[j] {
 			nums[k] = nums1[i]
-			k ++
-			i ++
-		}else{
+			k++
+			i++
+		} else {
 			nums[k] = nums2[j]
-			k ++
-			j ++
+			k++
+			j++
 		}
 	}
-	if  i < m{
+	if i < m {
 		nums = append(nums[:k], nums1[i:]...)
-	}else{
+	} else {
 		nums = append(nums[:k], nums2[j:]...)
 	}
 
-	for _,e := range nums{
+	for _, e := range nums {
 		fmt.Println(e)
 	}
 
-	ret := (m+n) / 2
-	if (m+n) % 2 == 1{
+	ret := (m + n) / 2
+	if (m+n)%2 == 1 {
 		return float64(nums[ret])
-	}else{
+	} else {
 		return float64(float64((nums[ret] + nums[ret-1])) / 2.0)
 	}
 }
